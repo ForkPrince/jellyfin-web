@@ -540,13 +540,7 @@ export default class ConnectionManager {
                         const connectionMode = result.connectionMode;
                         result = result.data;
 
-                        if (compareVersions(self.minServerVersion(), result.Version) === 1) {
-                            console.warn('[ConnectionManager] minServerVersion requirement not met. Server version:', result.Version);
-                            resolve({
-                                State: ConnectionState.ServerUpdateNeeded,
-                                Servers: [server]
-                            });
-                        } else if (server.Id && result.Id !== server.Id) {
+                        if (server.Id && result.Id !== server.Id) {
                             console.warn(
                                 '[ConnectionManager] http request succeeded, but found a different server Id than what was expected'
                             );
